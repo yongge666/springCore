@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
-<modelVersion> 4.0.0 </modelVersion>
+    <modelVersion> 4.0.0 </modelVersion>
     <groupId>com.springDemo</groupId>
     <artifactId>spingCore</artifactId>
     <packaging> jar </packaging>
@@ -12,6 +12,11 @@
     </properties>
     <description> spring核心代码实现 </description>
     <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.14.v20181114</version>
+        </dependency>
             <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -26,6 +31,22 @@
         </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.7.v20160115</version>
+                <configuration>
+                    <jettyXml>jetty.xml,jetty-ssl.xml,jetty-https.xml</jettyXml>
+                    <httpConnector>
+                        <port>8080</port>
+                        <host>localhost</host>
+                    </httpConnector>
+                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+
+        </plugins>
         <finalName>${artifactId}</finalName>
         <resources>
             <resource>
